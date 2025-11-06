@@ -1,0 +1,10 @@
+ollama
+dotenv
+chromadb
+sentence_transformers
+PyPDF2
+pypdf
+pdfplumber
+fastapi
+pydantic
+PyMuPDF
