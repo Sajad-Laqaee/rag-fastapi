@@ -59,12 +59,20 @@ cd rag-fastapi
 pip install -r requirements.txt
 ```
 
-- **2-Set Up Environment Variables**
+- **3-Set Up Environment Variables**
   Create a .env file in the project root:
 ```bash
 OLLAMA_API_KEY=your_ollama_api_key_here
 OLLAMA_MODEL="deepseek-v3.1:671b-cloud"  #for exmaple
 ```
+
+- **4-Run the Application**
+  at terminal:
+```bash
+uvicorn main_fastapi:app --reload --host 0.0.0.0 --port 8000
+```
+The API will be available at http://localhost:8000
+You can test it at http://localhost:8000/docs
 
 
 
