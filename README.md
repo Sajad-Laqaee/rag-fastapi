@@ -23,8 +23,6 @@ A production-ready Retrieval-Augmented Generation (RAG) system built with FastAP
 
 The system follows a modular Retrieval-Augmented Generation (RAG) pipeline built around FastAPI, ChromaDB, and Ollama.
 
----
-
 ```mermaid
 graph TB
     A[Client] -->|Upload Files| B[FastAPI Server]
@@ -40,11 +38,6 @@ graph TB
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style E fill:#bfb,stroke:#333,stroke-width:2px
     style F fill:#fbf,stroke:#333,stroke-width:2px
-
-
-The `---` before and after the Mermaid block creates a **visual separation** on GitHub.  
-The one-line description helps contextualize the diagram before readers see it.
-## 📋 Prerequisites
 
 ---
 
