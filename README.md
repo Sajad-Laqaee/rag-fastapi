@@ -36,3 +36,31 @@ graph TB
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style E fill:#bfb,stroke:#333,stroke-width:2px
     style F fill:#fbf,stroke:#333,stroke-width:2px
+
+
+## 📋 Prerequisites
+Python 3.8 or higher
+Ollama API access (for LLM inference)
+4GB+ RAM recommended
+Optional: CUDA-capable GPU for faster embeddings
+
+## 🚀 Quick Start
+1. Clone the Repository
+bash
+git clone https://github.com/yourusername/rag-fastapi.git
+cd rag-fastapi
+2. Install Dependencies
+bash
+pip install -r requirements.txt
+3. Set Up Environment Variables
+Create a .env file in the project root:
+OLLAMA_API_KEY=your_ollama_api_key_here
+OLLAMA_MODEL=llama3.2
+4. Optional: Install spaCy Model for Enhanced Anonymization
+bash
+python -m spacy download en_core_web_sm
+5. Run the Application
+bash
+uvicorn main_fastapi:app --reload --host 0.0.0.0 --port 8000
+The API will be available at http://localhost:8000
+you can test it at http://localhost:8000/docs
