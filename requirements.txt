@@ -1,0 +1,9 @@
+ollama
+dotenv
+chromadb
+sentence_transformers
+PyMuPDF
+fastapi
+pydantic
+spacy
+python-multipart
