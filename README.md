@@ -71,8 +71,8 @@ OLLAMA_MODEL="deepseek-v3.1:671b-cloud"  #for exmaple
 ```bash
 uvicorn main_fastapi:app --reload --host 0.0.0.0 --port 8000
 ```
--The API will be available at http://localhost:8000
--You can test it at http://localhost:8000/docs
+- The API will be available at http://localhost:8000
+- You can test it at http://localhost:8000/docs
 
 
 
