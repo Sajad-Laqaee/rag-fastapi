@@ -38,20 +38,13 @@ graph TB
     style B fill:#bbf,stroke:#333,stroke-width:2px
     style E fill:#bfb,stroke:#333,stroke-width:2px
     style F fill:#fbf,stroke:#333,stroke-width:2px
+```
+## 📋 Prerequisites
 
----
+- ** Python 3.8 or higher
+- ** Ollama API access (for LLM inference)
+- ** 4GB+ RAM recommended
+- ** Optional: CUDA-capable GPU for faster embeddings
 
-### 🪄 Step 3 (optional). Add a standalone architecture file
 
-If you want it **fully separated**, create a new file called `ARCHITECTURE.md` in your repo, and move the diagram there:
 
-**ARCHITECTURE.md**
-```markdown
-# 🏗️ System Architecture
-
-This document describes the internal architecture of the RAG FastAPI project.
-
-```mermaid
-graph TB
-    A[Client] -->|Upload Files| B[FastAPI Server]
-    ...
