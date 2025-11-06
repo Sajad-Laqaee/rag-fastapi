@@ -41,10 +41,10 @@ graph TB
 ```
 ## 📋 Prerequisites
 
-- ** Python 3.8 or higher
-- ** Ollama API access (for LLM inference)
-- ** 4GB+ RAM recommended
-- ** Optional: CUDA-capable GPU for faster embeddings
+- Python 3.8 or higher
+-  Ollama API access (for LLM inference)
+- 4GB+ RAM recommended
+- Optional: CUDA-capable GPU for faster embeddings
 
 ## 🚀 Quick Start
 
