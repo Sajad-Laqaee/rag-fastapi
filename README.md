@@ -34,10 +34,10 @@ graph TB
     B -->|Generate Response| F[Ollama LLM]
     C -->|Optional| G[spaCy NER]
     
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style E fill:#bfb,stroke:#333,stroke-width:2px
-    style F fill:#fbf,stroke:#333,stroke-width:2px
+    style A fill:#f9f,stroke:#333,stroke-width:2px,color:#000
+    style B fill:#bbf,stroke:#333,stroke-width:2px,color:#000
+    style E fill:#bfb,stroke:#333,stroke-width:2px,color:#000
+    style F fill:#fbf,stroke:#333,stroke-width:2px,color:#000
 ```
 ## 📋 Prerequisites
 
