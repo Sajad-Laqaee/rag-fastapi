@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - RAG System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-font { font-family: 'JetBrains Mono', monospace; }
+        .gradient-bg { background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%); }
+        .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
+        .hover-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
+        .doc-section { scroll-margin-top: 100px; }
+        .copy-button { opacity: 0; transition: opacity 0.2s; }
+        pre:hover .copy-button { opacity: 1; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-gradient-to-br from-teal-500 to-amber-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">RAG</span>
+                    </div>
+                    <h1 class="text-xl font-bold text-slate-800">KnowledgeAI</h1>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="index.html" class="text-slate-600 hover:text-teal-600 transition-colors">Home</a>
+                    <a href="documentation.html" class="text-teal-600 font-semibold">Documentation</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl font-bold mb-6">API Documentation</h1>
+            <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                Complete reference for the RAG System API endpoints, request/response formats, and integration examples.
+            </p>
+        </div>
+    </section>
+
+    <!-- Documentation Content -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Table of Contents -->
+                <div class="lg:col-span-1">
+                    <div class="sticky top-24 bg-white rounded-lg shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-slate-800 mb-4">Table of Contents</h3>
+                        <nav class="space-y-2">
+                            <a href="#overview" class="block text-sm text-slate-600 hover:text-teal-600 py-1">System Overview</a>
+                            <a href="#authentication" class="block text-sm text-slate-600 hover:text-teal-600 py-1">Authentication</a>
+                            <a href="#endpoints" class="block text-sm text-slate-600 hover:text-teal-600 py-1">Endpoints</a>
+                            <a href="#ingest" class="block text-sm text-slate-600 hover:text-teal-600 py-1 pl-4">• Document Ingestion</a>
+                            <a href="#query" class="block text-sm text-slate-600 hover:text-teal-600 py-1 pl-4">• Query System</a>
+                            <a href="#examples" class="block text-sm text-slate-600 hover:text-teal-600 py-1">Code Examples</a>
+                            <a href="#models" class="block text-sm text-slate-600 hover:text-teal-600 py-1">Data Models</a>
+                            <a href="#errors" class="block text-sm text-slate-600 hover:text-teal-600 py-1">Error Handling</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="lg:col-span-3 space-y-12">
+                    <!-- System Overview -->
+                    <div id="overview" class="doc-section bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-3xl font-bold text-slate-800 mb-6">System Overview</h2>
+                        <div class="prose prose-lg max-w-none">
+                            <p class="text-slate-600 mb-4">
+                                The RAG (Retrieval-Augmented Generation) System is a sophisticated document intelligence platform that combines 
+                                semantic search with large language model capabilities. It allows users to upload documents, index their content, 
+                                and ask natural language questions to retrieve relevant information.
+                            </p>
+                            
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Key Features</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2 mb-6">
+                                <li><strong>Multi-format Support:</strong> Process PDF and text files</li>
+                                <li><strong>Semantic Search:</strong> Vector-based document retrieval using sentence transformers</li>
+                                <li><strong>LLM Integration:</strong> Intelligent answer generation using Ollama models</li>
+                                <li><strong>Scalable Architecture:</strong> Built on FastAPI with ChromaDB vector storage</li>
+                                <li><strong>Privacy Protection:</strong> Built-in PII anonymization and data filtering</li>
+                                <li><strong>Real-time Processing:</strong> Streamlined ingestion and query pipeline</li>
+                            </ul>
+
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Architecture Components</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div class="bg-slate-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-slate-800 mb-2">FastAPI Backend</h4>
+                                    <p class="text-sm text-slate-600">High-performance Python web framework handling API requests and business logic</p>
+                                </div>
+                                <div class="bg-slate-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-slate-800 mb-2">ChromaDB</h4>
+                                    <p class="text-sm text-slate-600">Vector database for efficient semantic search and document storage</p>
+                                </div>
+                                <div class="bg-slate-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-slate-800 mb-2">Sentence Transformers</h4>
+                                    <p class="text-sm text-slate-600">all-MiniLM-L6-v2 model for generating document embeddings</p>
+                                </div>
+                                <div class="bg-slate-50 rounded-lg p-4">
+                                    <h4 class="font-semibold text-slate-800 mb-2">Ollama LLM</h4>
+                                    <p class="text-sm text-slate-600">Local large language model for intelligent response generation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Authentication -->
+                    <div id="authentication" class="doc-section bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-3xl font-bold text-slate-800 mb-6">Authentication</h2>
+                        <div class="prose prose-lg max-w-none">
+                            <p class="text-slate-600 mb-4">
+                                The RAG System uses API key authentication for secure access. Include your API key in the request headers 
+                                when making API calls.
+                            </p>
+                            
+                            <div class="bg-slate-800 rounded-lg p-4 mb-6 relative">
+                                <button class="copy-button absolute top-2 right-2 bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700" onclick="copyCode(this)">
+                                    Copy
+                                </button>
+                                <pre class="text-green-400 text-sm overflow-x-auto"><code class="language-bash"># Set your API key
+export OLLAMA_API_KEY="your-api-key-here"
+
+# Include in API requests
+curl -H "Authorization: Bearer $OLLAMA_API_KEY" \
+     -H "Content-Type: application/json" \
+     http://localhost:8000/query</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Endpoints -->
+                    <div id="endpoints" class="doc-section bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-3xl font-bold text-slate-800 mb-6">API Endpoints</h2>
+                        
+                        <!-- Document Ingestion -->
+                        <div id="ingest" class="mb-12">
+                            <h3 class="text-2xl font-semibold text-slate-800 mb-4">Document Ingestion</h3>
+                            <p class="text-slate-600 mb-4">
+                                Upload and process documents into the vector database for semantic search and retrieval.
+                            </p>
+
+                            <div class="bg-slate-50 rounded-lg p-4 mb-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="code-font text-sm font-semibold text-slate-800">POST /ingest</span>
+                                    <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">multipart/form-data</span>
+                                </div>
+                                <p class="text-sm text-slate-600">Upload PDF or text files for processing and indexing</p>
+                            </div>
+
+                            <h4 class="text-lg font-semibold text-slate-800 mb-3">Request Parameters</h4>
+                            <div class="overflow-x-auto mb-4">
+                                <table class="w-full text-sm">
+                                    <thead class="bg-slate-100">
+                                        <tr>
+                                            <th class="text-left py-2 px-3 font-semibold text-slate-800">Parameter</th>
+                                            <th class="text-left py-2 px-3 font-semibold text-slate-800">Type</th>
+                                            <th class="text-left py-2 px-3 font-semibold text-slate-800">Required</th>
+                                            <th class="text-left py-2 px-3 font-semibold text-slate-800">Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-200">
+                                        <tr>
+                                            <td class="py-2 px-3 code-font text-slate-800">files</td>
+                                            <td class="py-2 px-3 text-slate-600">File[]</td>
+                                            <td class="py-2 px-3 text-slate-600">Yes</td>
+                                            <td class="py-2 px-3 text-slate-600">PDF or text files to process</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4 class="text-lg font-semibold text-slate-800 mb-3">Response Format</h4>
+                            <div class="bg-slate-800 rounded-lg p-4 mb-4 relative">
+                                <button class="copy-button absolute top-2 right-2 bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700" onclick="copyCode(this)">
+                                    Copy
+                                </button>
+                                <pre class="text-green-400 text-sm overflow-x-auto"><code class="language-json">{
+  "inserted_chunks": 45,
+  "total_tokens_approx": 12500,
+  "vector_dim": 384,
+  "chunk_ids": [
+    "a1b2c3d4e5f6...",
+    "g7h8i9j0k1l2...",
+    "m3n4o5p6q7r8..."
+  ]
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Query System -->
+                        <div id="query" class="mb-12">
+                            <h3 class="text-2xl font-semibold text-slate-800 mb-4">Query System</h3>
+                            <p class="text-slate-600 mb-4">
+                                Submit natural language questions to retrieve relevant information from indexed documents.
+                            </p>
+
+                            <div class="bg-slate-50 rounded-lg p-4 mb-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="code-font text-sm font-semibold text-slate-800">POST /query</span>
+                                    <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">application/json</span>
+                                </div>
+                                <p class="text-sm text-slate-600">Submit queries and receive AI-generated answers with source attribution</p>
+                            </div>
+
+                            <h4 class="text-lg font-semibold text-slate-800 mb-3">Request Body</h4>
+                            <div class="bg-slate-800 rounded-lg p-4 mb-4 relative">
+                                <button class="copy-button absolute top-2 right-2 bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700" onclick="copyCode(this)">
+                                    Copy
+                                </button>
+                                <pre class="text-green-400 text-sm overflow-x-auto"><code class="language-json">{
+  "question": "What are the main findings in the research paper?",
+  "k": 3,
+  "score_threshold": 0.6,
+  "filter": {
+    "source": "research_paper.pdf",
+    "min_page": 1,
+    "max_page": 10
+  }
+}</code></pre>
+                            </div>
+
+                            <h4 class="text-lg font-semibold text-slate-800 mb-3">Response Format</h4>
+                            <div class="bg-slate-800 rounded-lg p-4 mb-4 relative">
+                                <button class="copy-button absolute top-2 right-2 bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700" onclick="copyCode(this)">
+                                    Copy
+                                </button>
+                                <pre class="text-green-400 text-sm overflow-x-auto"><code class="language-json">{
+  "answer": "The main findings indicate significant improvements in accuracy...",
+  "sources": [
+    {
+      "chunk_id": "a1b2c3d4e5f6...",
+      "source": "research_paper.pdf",
+      "page_number": 5,
+      "date_added": "2024-01-15T10:30:00Z",
+      "similarity": 0.8923,
+      "snippet": "Our experiments demonstrate a 23% improvement..."
+    }
+  ]
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Code Examples -->
+                    <div id="examples" class="doc-section bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-3xl font-bold text-slate-800 mb-6">Code Examples</h2>
+                        
+                        <div class="space-y-8">
+                            <!-- Python Example -->
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800 mb-3">Python Client</h3>
+                                <div class="bg-slate-800 rounded-lg p-4 relative">
+                                    <button class="copy-button absolute top-2 right-2 bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700" onclick="copyCode(this)">
+                                        Copy
+                                    </button>
+                                    <pre class="text-green-400 text-sm overflow-x-auto"><code class="language-python">import requests
+import json
+
+class RAGClient:
+    def __init__(self, base_url, api_key):
+        self.base_url = base_url
+        self.headers = {
+            'Authorization': f'Bearer {api_key}',
+            'Content-Type': 'application/json'
+        }
+    
+    def ingest_documents(self, file_paths):
+        """Upload and process documents"""
+        files = [('files', open(fp, 'rb')) for fp in file_paths]
+        response = requests.post(
+            f'{self.base_url}/ingest',
+            headers={'Authorization': self.headers['Authorization']},
+            files=files
+        )
+        return response.json()
+    
+    def query(self, question, k=3, threshold=0.6):
+        """Submit a query and get AI response"""
+        data = {
+            'question': question,
+            'k': k,
+            'score_threshold': threshold
+        }
+        response = requests.post(
+            f'{self.base_url}/query',
+            headers=self.headers,
+            json=data
+        )
+        return response.json()
+
+# Usage example
+client = RAGClient('http://localhost:8000', 'your-api-key')
+
+# Upload documents
+result = client.ingest_documents(['document1.pdf', 'document2.txt'])
+print(f"Processed {result['inserted_chunks']} chunks")
+
+# Query the system
+response = client.query("What are the key findings?")
+print(f"Answer: {response['answer']}")
+print(f"Sources: {len(response['sources'])} documents")</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- JavaScript Example -->
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800 mb-3">JavaScript Client</h3>
+                                <div class="bg-slate-800 rounded-lg p-4 relative">
+                                    <button class="copy-button absolute top-2 right-2 bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700" onclick="copyCode(this)">
+                                        Copy
+                                    </button>
+                                    <pre class="text-green-400 text-sm overflow-x-auto"><code class="language-javascript">class RAGClient {
+    constructor(baseUrl, apiKey) {
+        this.baseUrl = baseUrl;
+        this.headers = {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+        };
+    }
+
+    async ingestDocuments(files) {
+        const formData = new FormData();
+        files.forEach(file => formData.append('files', file));
+        
+        const response = await fetch(`${this.baseUrl}/ingest`, {
+            method: 'POST',
+            headers: {
+                'Authorization': this.headers['Authorization']
+            },
+            body: formData
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Upload failed: ${response.statusText}`);
+        }
+        
+        return await response.json();
+    }
+
+    async query(question, k = 3, threshold = 0.6) {
+        const data = {
+            question: question,
+            k: k,
+            score_threshold: threshold
+        };
+        
+        const response = await fetch(`${this.baseUrl}/query`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify(data)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Query failed: ${response.statusText}`);
+        }
+        
+        return await response.json();
+    }
+}
+
+// Usage example
+const client = new RAGClient('http://localhost:8000', 'your-api-key');
+
+// Upload documents
+const fileInput = document.getElementById('file-input');
+const files = Array.from(fileInput.files);
+
+try {
+    const result = await client.ingestDocuments(files);
+    console.log(`Processed ${result.inserted_chunks} chunks`);
+    
+    const response = await client.query('What are the key findings?');
+    console.log('Answer:', response.answer);
+    console.log('Sources:', response.sources.length);
+} catch (error) {
+    console.error('Error:', error.message);
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- cURL Example -->
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800 mb-3">cURL Commands</h3>
+                                <div class="bg-slate-800 rounded-lg p-4 relative">
+                                    <button class="copy-button absolute top-2 right-2 bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700" onclick="copyCode(this)">
+                                        Copy
+                                    </button>
+                                    <pre class="text-green-400 text-sm overflow-x-auto"><code class="language-bash"># Upload documents
+curl -X POST http://localhost:8000/ingest \\
+  -H "Authorization: Bearer your-api-key" \\
+  -F "files=@document1.pdf" \\
+  -F "files=@document2.txt"
+
+# Query the system
+curl -X POST http://localhost:8000/query \\
+  -H "Authorization: Bearer your-api-key" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "question": "What are the main findings?",
+    "k": 3,
+    "score_threshold": 0.6
+  }'</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Models -->
+                    <div id="models" class="doc-section bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-3xl font-bold text-slate-800 mb-6">Data Models</h2>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800 mb-3">QueryRequest</h3>
+                                <div class="bg-slate-50 rounded-lg p-4">
+                                    <table class="w-full text-sm">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th class="text-left py-2 font-semibold text-slate-800">Field</th>
+                                                <th class="text-left py-2 font-semibold text-slate-800">Type</th>
+                                                <th class="text-left py-2 font-semibold text-slate-800">Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-b">
+                                                <td class="py-2 code-font text-slate-800">question</td>
+                                                <td class="py-2 text-slate-600">string</td>
+                                                <td class="py-2 text-slate-600">The natural language question to ask</td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 code-font text-slate-800">k</td>
+                                                <td class="py-2 text-slate-600">integer</td>
+                                                <td class="py-2 text-slate-600">Number of relevant chunks to retrieve (default: 3)</td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 code-font text-slate-800">score_threshold</td>
+                                                <td class="py-2 text-slate-600">float</td>
+                                                <td class="py-2 text-slate-600">Minimum similarity score for results (default: 0.6)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-2 code-font text-slate-800">filter</td>
+                                                <td class="py-2 text-slate-600">object</td>
+                                                <td class="py-2 text-slate-600">Optional metadata filters for source documents</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800 mb-3">QueryResponse</h3>
+                                <div class="bg-slate-50 rounded-lg p-4">
+                                    <table class="w-full text-sm">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th class="text-left py-2 font-semibold text-slate-800">Field</th>
+                                                <th class="text-left py-2 font-semibold text-slate-800">Type</th>
+                                                <th class="text-left py-2 font-semibold text-slate-800">Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-b">
+                                                <td class="py-2 code-font text-slate-800">answer</td>
+                                                <td class="py-2 text-slate-600">string</td>
+                                                <td class="py-2 text-slate-600">AI-generated answer to the question</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-2 code-font text-slate-800">sources</td>
+                                                <td class="py-2 text-slate-600">array</td>
+                                                <td class="py-2 text-slate-600">List of source documents and chunks used</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-xl font-semibold text-slate-800 mb-3">SourceItem</h3>
+                                <div class="bg-slate-50 rounded-lg p-4">
+                                    <table class="w-full text-sm">
+                                        <thead>
+                                            <tr class="border-b">
+                                                <th class="text-left py-2 font-semibold text-slate-800">Field</th>
+                                                <th class="text-left py-2 font-semibold text-slate-800">Type</th>
+                                                <th class="text-left py-2 font-semibold text-slate-800">Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="border-b">
+                                                <td class="py-2 code-font text-slate-800">chunk_id</td>
+                                                <td class="py-2 text-slate-600">string</td>
+                                                <td class="py-2 text-slate-600">Unique identifier for the text chunk</td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 code-font text-slate-800">source</td>
+                                                <td class="py-2 text-slate-600">string</td>
+                                                <td class="py-2 text-slate-600">Original document filename</td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 code-font text-slate-800">page_number</td>
+                                                <td class="py-2 text-slate-600">integer</td>
+                                                <td class="py-2 text-slate-600">Page number in the source document</td>
+                                            </tr>
+                                            <tr class="border-b">
+                                                <td class="py-2 code-font text-slate-800">similarity</td>
+                                                <td class="py-2 text-slate-600">float</td>
+                                                <td class="py-2 text-slate-600">Semantic similarity score (0-1)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-2 code-font text-slate-800">snippet</td>
+                                                <td class="py-2 text-slate-600">string</td>
+                                                <td class="py-2 text-slate-600">Text content of the retrieved chunk</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error Handling -->
+                    <div id="errors" class="doc-section bg-white rounded-lg shadow-lg p-8">
+                        <h2 class="text-3xl font-bold text-slate-800 mb-6">Error Handling</h2>
+                        
+                        <p class="text-slate-600 mb-6">
+                            The API uses standard HTTP status codes and returns detailed error information in JSON format.
+                        </p>
+
+                        <div class="space-y-4">
+                            <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                                <h4 class="font-semibold text-red-800 mb-2">400 Bad Request</h4>
+                                <p class="text-red-700 text-sm">Invalid request parameters or missing required fields</p>
+                            </div>
+                            
+                            <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                                <h4 class="font-semibold text-red-800 mb-2">401 Unauthorized</h4>
+                                <p class="text-red-700 text-sm">Missing or invalid API key authentication</p>
+                            </div>
+                            
+                            <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                                <h4 class="font-semibold text-red-800 mb-2">500 Internal Server Error</h4>
+                                <p class="text-red-700 text-sm">Server-side error during processing</p>
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-semibold text-slate-800 mt-6 mb-3">Error Response Format</h3>
+                        <div class="bg-slate-800 rounded-lg p-4 relative">
+                            <button class="copy-button absolute top-2 right-2 bg-teal-600 text-white px-2 py-1 rounded text-xs hover:bg-teal-700" onclick="copyCode(this)">
+                                Copy
+                            </button>
+                            <pre class="text-green-400 text-sm overflow-x-auto"><code class="language-json">{
+  "detail": "Invalid request format",
+  "status": 400,
+  "error": "ValidationError"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-br from-teal-500 to-amber-500 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">SL</span>
+                </div>
+                <span class="text-xl font-bold">KnowledgeAI</span>
+            </div>
+            <p class="text-slate-400">© Sajadlaghaee.sl@Gmail.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Copy code functionality
+        function copyCode(button) {
+            const pre = button.parentElement.querySelector('pre code');
+            const text = pre.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('bg-green-600');
+                
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('bg-green-600');
+                }, 2000);
+            });
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', () => {
+            anime({
+                targets: '.doc-section',
+                opacity: [0, 1],
+                translateY: [30, 0],
+                duration: 800,
+                delay: (el, i) => 200 * i,
+                easing: 'easeOutQuad'
+            });
+        });
+    </script>
+</body>
+</html>
