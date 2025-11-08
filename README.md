@@ -20,7 +20,6 @@ Now includes a **simple web-based UI** for document upload and querying using Ja
 - **📊 Metadata Filtering**: Query documents by source, page numbers, and custom filters
 - **🖥️ Web UI**: Simple HTML + JavaScript interface for querying and uploading documents
 - **🔄 RESTful API**: Clean, well-documented API endpoints
-- **📝 Comprehensive Logging**: Built-in logging for debugging and monitoring
 
 ## 🏗️ Architecture
 
