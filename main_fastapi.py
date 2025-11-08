@@ -31,6 +31,8 @@ from datetime import datetime, timezone
 from typing import List, Optional
 
 from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 from ollama import Client
@@ -78,6 +80,17 @@ app = FastAPI(
     title="RAG with FastAPI",
     description="A lightweight RAG system using ChromaDB for vector storage and Ollama LLM for inference.",
     version="1.0"
+)
+
+
+
+# Add CORS middleware for frontend access
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
@@ -182,7 +195,7 @@ def anonymize_text(text: str) -> str:
 # ENDPOINT: DOCUMENT INGESTION
 # ============================================================
 
-@app.post("/ingest", response_model=IngestResponse)
+@app.post("/api/ingest", response_model=IngestResponse)
 async def ingest_endpoint(files: Optional[List[UploadFile]] = File(None)):
     """
     Upload and index PDF or text files into ChromaDB.
@@ -288,7 +301,7 @@ async def ingest_endpoint(files: Optional[List[UploadFile]] = File(None)):
 # ENDPOINT: SEMANTIC QUERY + LLM RESPONSE
 # ============================================================
 
-@app.post("/query", response_model=QueryResponse)
+@app.post("/api/query", response_model=QueryResponse)
 async def query_endpoint(req: QueryRequest):
     """
     Query ChromaDB using a natural-language question.
@@ -397,3 +410,7 @@ async def query_endpoint(req: QueryRequest):
     ]
 
     return QueryResponse(answer=answer_text, sources=sources)
+
+
+# Mount the ui folder as static files for Fornt-end
+app.mount("/", StaticFiles(directory="ui", html=True), name="ui")
