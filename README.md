@@ -81,8 +81,7 @@ OLLAMA_MODEL="deepseek-v3.1:671b-cloud"  # or another model
 uvicorn main_fastapi:app --reload
 ```
 
-* API available at: [http://localhost:8000](http://localhost:8000)
-* Web UI: [http://localhost:8000/ui](http://localhost:8000) 
+* API and web UI are available at: [http://localhost:8000](http://localhost:8000)
 * Swagger UI for testing: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
