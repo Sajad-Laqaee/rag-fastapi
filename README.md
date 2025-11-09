@@ -17,9 +17,8 @@ Now includes a **simple web-based UI** for document upload and querying using Ja
 - **🤖 LLM Integration**: Powered by Ollama for intelligent response generation
 - **🔐 Privacy-First**: Built-in anonymization for sensitive data (PII, emails, phone numbers)
 - **⚡ High Performance**: Optimized with caching and efficient text chunking
-- **📊 Metadata Filtering**: Query documents by source, page numbers, and custom filters
+- **📊 Metadata Filtering**: Query documents by source and page numbers
 - **🖥️ Web UI**: Simple HTML + JavaScript interface for querying and uploading documents
-- **🔄 RESTful API**: Clean, well-documented API endpoints
 
 ## 🏗️ Architecture
 
